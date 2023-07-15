@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Item from './Item';
 import AddForm from './AddForm';
 import BestDays from './BestDays';
-import { StateContext } from '../Context/context';
+import StateContext from '../Context/context';
 
 function List(): JSX.Element {
   const { state } = useContext(StateContext);

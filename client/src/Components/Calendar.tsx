@@ -6,7 +6,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { addDays, format, differenceInCalendarDays } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
 import { Person, SetShowCalendar } from '../types/types';
-import { StateContext } from '../Context/context';
+import StateContext from '../Context/context';
 
 function Calendar({
   setShowCalendar,

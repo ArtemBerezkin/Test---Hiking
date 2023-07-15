@@ -2,7 +2,7 @@ import React, { useMemo, useReducer } from 'react';
 import './App.css';
 import List from '../Components/List';
 import '../Components/styles/mainStyles.scss';
-import { StateContext } from '../Context/context';
+import StateContext from '../Context/context';
 import { initState, reducer } from '../Reducer/reducer';
 
 function App(): JSX.Element {

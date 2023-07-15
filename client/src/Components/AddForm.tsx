@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { StateContext } from '../Context/context';
+import StateContext from '../Context/context';
 
 function AddForm(): JSX.Element {
   const [input, setInput] = useState('');

@@ -10,4 +10,5 @@ const initContext: Context = {
 };
 
 // создайте контекст
-export const StateContext = createContext(initContext);
+const StateContext = createContext(initContext);
+export default StateContext;

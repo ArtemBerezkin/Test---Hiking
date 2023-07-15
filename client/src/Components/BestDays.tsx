@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { HikingGroups } from '../types/types';
-import { StateContext } from '../Context/context';
+import StateContext from '../Context/context';
 
 function formatDate(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0');
