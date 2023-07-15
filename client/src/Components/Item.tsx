@@ -8,9 +8,13 @@ import StateContext from '../Context/context';
 
 function Item({ item, index }: { item: Person; index: number }): JSX.Element {
   const [showCalendar, setShowCalendar] = useState(false);
-  const { dispatch } = useContext(StateContext);
+  const { dispatch, state } = useContext(StateContext);
   const deleteFunc = (): void => {
     dispatch({ type: 'DELETE_PEOPLE', payload: item.id });
+    const updatedPeopleState = state.peopleState.filter(
+      (el) => el.id !== item.id
+    );
+    localStorage.setItem('peopleState', JSON.stringify(updatedPeopleState));
   };
 
   const openCalendar = (): void => {

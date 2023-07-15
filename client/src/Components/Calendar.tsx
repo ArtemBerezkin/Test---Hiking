@@ -15,7 +15,7 @@ function Calendar({
   setShowCalendar: SetShowCalendar;
   item: Person;
 }): JSX.Element {
-  const { dispatch } = useContext(StateContext);
+  const { dispatch, state } = useContext(StateContext);
   const pastMonth = item.fromDate;
   const daysDifference =
     item.toDate && item.fromDate
@@ -27,12 +27,24 @@ function Calendar({
   };
   const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
   const changeDate = (): void => {
+    const updatedItem = { ...item, fromDate: range?.from, toDate: range?.to };
     dispatch({
       type: 'CHANGE_DATE',
-      payload: { ...item, fromDate: range?.from, toDate: range?.to },
+      payload: updatedItem,
     });
+
     setShowCalendar((prev) => !prev);
+
+    const updatedPeopleState = state.peopleState.map((el) => {
+      if (el.id === item.id) {
+        return updatedItem;
+      }
+      return el;
+    });
+
+    localStorage.setItem('peopleState', JSON.stringify(updatedPeopleState));
   };
+
   let footer = (
     <>
       <p>Выбирает {item.name}</p>

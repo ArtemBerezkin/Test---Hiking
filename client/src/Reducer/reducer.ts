@@ -1,24 +1,15 @@
 import { State } from '../types/types';
 
 export const initState: State = {
-  peopleState: [
-    {
-      id: 1,
-      name: 'Maша',
-      fromDate: new Date(2023, 6, 1),
-      toDate: new Date(2023, 6, 7),
-    },
-    {
-      id: 2,
-      name: 'Олег',
-      fromDate: new Date(2023, 6, 1),
-      toDate: new Date(2023, 6, 9),
-    },
-  ],
+  peopleState: [],
 };
-
 export const reducer = (state: State, action: any): State => {
   switch (action.type) {
+    case 'INIT_PEOPLE':
+      return {
+        ...state,
+        peopleState: action.payload,
+      };
     case 'ADD_PEOPLE':
       return {
         ...state,

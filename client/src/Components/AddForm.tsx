@@ -10,18 +10,26 @@ function AddForm(): JSX.Element {
   const addFunc = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (input) {
+      const newId =
+        state.peopleState.length > 0
+          ? state.peopleState[state.peopleState.length - 1].id + 1
+          : 1;
+      const newPerson = {
+        id: newId,
+        name: input,
+        fromDate: undefined,
+        toDate: undefined,
+      };
       dispatch({
         type: 'ADD_PEOPLE',
-        payload: {
-          id: state.peopleState[state.peopleState.length - 1].id + 1,
-          name: input,
-          fromDate: undefined,
-          toDate: undefined,
-        },
+        payload: newPerson,
       });
+      const updatedPeopleState = [...state.peopleState, newPerson];
+      localStorage.setItem('peopleState', JSON.stringify(updatedPeopleState));
       setInput('');
     }
   };
+
   return (
     <div className="form-container">
       <form onSubmit={addFunc}>
