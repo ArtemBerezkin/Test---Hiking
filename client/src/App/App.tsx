@@ -7,10 +7,24 @@ import { initState, reducer } from '../Reducer/reducer';
 import { Person } from '../types/types';
 
 function App(): JSX.Element {
+  const hardCode = [
+    {
+      id: 1,
+      name: 'Maша',
+      fromDate: new Date(2023, 6, 1),
+      toDate: new Date(2023, 6, 7),
+    },
+    {
+      id: 2,
+      name: 'Олег',
+      fromDate: new Date(2023, 6, 1),
+      toDate: new Date(2023, 6, 9),
+    },
+  ];
   const getInitialState = (): Person[] => {
     const storedState = localStorage.getItem('peopleState');
-    if (storedState) {
-      const parsedState = JSON.parse(storedState);
+    const parsedState = storedState ? JSON.parse(storedState) : null;
+    if (parsedState?.length) {
       // Преобразование строковых значений в объекты даты
       return parsedState.map((person: Person) => ({
         ...person,
@@ -18,8 +32,10 @@ function App(): JSX.Element {
         toDate: person.toDate ? new Date(person.toDate) : undefined,
       }));
     }
-    return [];
+    localStorage.setItem('peopleState', JSON.stringify(hardCode));
+    return hardCode;
   };
+
   const [state, dispatch] = useReducer(reducer, initState);
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
   useEffect(() => {

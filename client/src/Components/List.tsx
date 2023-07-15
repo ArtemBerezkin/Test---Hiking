@@ -18,7 +18,7 @@ function List(): JSX.Element {
           ? people.map((item, index) => (
               <Item item={item} index={index} key={item.id} />
             ))
-          : 'Пока нет участников'}
+          : 'Пока нет участников, при обновлении появится Маша и Олег'}
       </div>
       <BestDays />
     </>
